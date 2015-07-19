@@ -1067,14 +1067,21 @@ Array::Array(const Array &other) {
 Array::Array(const Value &value) {
   import(value);
 }
-void Array::import(const Array &other) {
+void Array::import(const Array &other, const bool merge) {
   if (this != &other) {
     // default
-    container::const_iterator
+    if (merge)
+    {
+      container::const_iterator
         it = other.values_.begin(),
         end = other.values_.end();
-    for (/**/ ; it != end; ++it) {
-      values_.push_back( new Value(**it) );
+      for (/**/ ; it != end; ++it) {
+        values_.push_back( new Value(**it) );
+      }
+    }
+    else
+    {
+      values_.push_back( new Value(other) );
     }
   } else {
     // recursion is supported here

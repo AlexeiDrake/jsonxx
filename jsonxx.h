@@ -166,7 +166,7 @@ class Array {
   bool parse(std::istream &input);
   bool parse(const std::string &input);
   typedef std::vector<Value*> container;
-  void import(const Array &other);
+  void import(const Array &other, const bool merge = true);
   void import(const Value &value);
   Array &operator<<(const Array &other);
   Array &operator<<(const Value &value);
